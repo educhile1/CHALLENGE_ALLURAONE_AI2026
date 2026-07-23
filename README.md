@@ -2,21 +2,6 @@
 
 **EduBot Coach** es una solución RAG (Retrieval-Augmented Generation) de asistencia técnica, desarrollo profesional y consultoría integral. Actúa como un mentor experto enfocado en empleabilidad, decisiones estratégicas, salud, calidad de vida y proyección financiera a través de **14 módulos de análisis especializados**.
 
----
-
-### 🌐 Aplicación Desplegada en Producción (AWS EC2)
-
-La aplicación se encuentra activa y desplegada en vivo en la infraestructura de **AWS (EC2)**:
-
-👉 **[https://ec2-56-124-13-24.sa-east-1.compute.amazonaws.com/](https://ec2-56-124-13-24.sa-east-1.compute.amazonaws.com/)**  
-*(O vía HTTP en: [http://ec2-56-124-13-24.sa-east-1.compute.amazonaws.com/](http://ec2-56-124-13-24.sa-east-1.compute.amazonaws.com/))*
-
-#### 📸 Capturas de Pantalla de la Aplicación en Vivo
-
-![Captura 0 - Pantalla de Inicio de Sesión / Login](imagenes_entrega/captura0login.png)
-![Captura 1 - EduBot Coach Interfaz](imagenes_entrega/captura1.png)
-![Captura 2 - Análisis de CV y Respuesta RAG](imagenes_entrega/captura2.png)
-![Captura 3 - Módulos y Diagnóstico](imagenes_entrega/captura3.png)
 
 ---
 
@@ -235,7 +220,28 @@ docker compose up --build -d
 Visita tu aplicación en la URL de tu instancia EC2:
 👉 **[https://ec2-56-124-13-24.sa-east-1.compute.amazonaws.com/](https://ec2-56-124-13-24.sa-east-1.compute.amazonaws.com/)**
 
+
+
 ---
+
+### 🌐 Aplicación Desplegada en Producción (AWS EC2)
+
+La aplicación se encuentra activa y desplegada en vivo en la infraestructura de **AWS (EC2)**:
+
+👉 **[https://ec2-56-124-13-24.sa-east-1.compute.amazonaws.com/](https://ec2-56-124-13-24.sa-east-1.compute.amazonaws.com/)**  
+*(O vía HTTP en: [http://ec2-56-124-13-24.sa-east-1.compute.amazonaws.com/](http://ec2-56-124-13-24.sa-east-1.compute.amazonaws.com/))*
+
+#### 📸 Capturas de Pantalla de la Aplicación en Vivo
+
+![Captura 0 - Pantalla de Inicio de Sesión / Login](imagenes_entrega/captura0login.png)
+![Captura 1 - EduBot Coach Interfaz](imagenes_entrega/captura1.png)
+![Captura 2 - Análisis de CV y Respuesta RAG](imagenes_entrega/captura2.png)
+![Captura 3 - Módulos y Diagnóstico](imagenes_entrega/captura3.png)
+
+
+
+---
+
 
 ## 📄 Licencia y Autores
 
