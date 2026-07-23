@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  edubot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: edubot_app
+    ports:
+      # Mapeo del puerto público 80 (HTTP estándar) al puerto 8501 interno del contenedor
+      - "${HOST_PORT:-80}:8501"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - CHROMA_PERSIST_DIR=/app/chroma_db
+      - DOCS_DIR=/app/${DOCS_DIR:-docs}
+      - DOCS_HELP=/app/${DOCS_HELP:-help}
+      - ADMIN_USER=${ADMIN_USER:-admin}
+      - ADMIN_PASS=${ADMIN_PASS:-edubot2026}
+      - PRO_USER=${PRO_USER:-pro_user}
+      - PRO_PASS=${PRO_PASS:-pro2026}
+      - STARTER_USER=${STARTER_USER:-starter}
+      - STARTER_PASS=${STARTER_PASS:-free2026}
+    volumes:
+      # Persistencia de la Base de Datos Vectorial ChromaDB en el Host
+      - ./chroma_db:/app/chroma_db
+      # Mapeo de las carpetas de conocimiento e inteligencia y ayuda/planes
+      - ./${DOCS_DIR:-docs}:/app/${DOCS_DIR:-docs}
+      - ./${DOCS_HELP:-help}:/app/${DOCS_HELP:-help}
+    restart: unless-stopped

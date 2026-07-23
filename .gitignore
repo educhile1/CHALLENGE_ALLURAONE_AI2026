@@ -1,0 +1,26 @@
+# Entornos virtuales y configuraciones locales
+venv/
+.venv/
+env/
+ENV/
+.env
+
+# Base de datos vectorial
+chroma_db/
+
+# Archivos de caché y temporales de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Archivos de configuración de IDE y Sistema Operativo
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Documentos locales confidenciales (descomentar si aplica)
+# docs/*.pdf
+# docs/*.txt
