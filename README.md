@@ -11,17 +11,30 @@ La aplicación se encuentra activa y desplegada en vivo en la infraestructura de
 👉 **[https://ec2-56-124-13-24.sa-east-1.compute.amazonaws.com/](https://ec2-56-124-13-24.sa-east-1.compute.amazonaws.com/)**  
 *(O vía HTTP en: [http://ec2-56-124-13-24.sa-east-1.compute.amazonaws.com/](http://ec2-56-124-13-24.sa-east-1.compute.amazonaws.com/))*
 
-#### 📸 Capturas de Pantalla de la Aplicación en Vivo
+####  **Ingreso a la aplicación - EduBot Coach**
 
 ![Captura 0 - Pantalla de Inicio de Sesión / Login](imagenes_entrega/captura0login.png)
-![Captura 1 - EduBot Coach Interfaz](imagenes_entrega/captura1.png)
+
+
+> 💡 **Evaluación y Match Score del candidato/oferta y ajustes sugeridos para superar los filtros ATS:**  
+
 ![Captura 2 - Análisis de CV y Respuesta RAG](imagenes_entrega/captura2.png)
+
+
+
+
 ![Captura 3 - Módulos y Diagnóstico](imagenes_entrega/captura3.png)
-![Captura - Evaluación de Trabajo No Recomendado por Sobrecalificación](imagenes_entrega/captura_trabajonorecomendado.png)
+
+> 💡 **Evaluación y Recomendación para calificar a corto, mediano y largo plazo:**  
+
+![Captura - Flujo de Conversación e Interacción](imagenes_entrega/capturaconversacion.png)
 
 > 💡 **Evaluación Crítica y Recomendación por Sobrecalificación:**  
 > Durante la ejecución del Módulo 1 (Optimización de Empleabilidad & Match Score), EduBot Coach no solo busca emparejar candidatos con ofertas de trabajo, sino que analiza de forma crítica la coherencia profesional. Si el perfil del candidato supera ampliamente las exigencias del puesto o existe un desajuste estratégico (sobrecalificación), la IA sugerirá fundamentadamente **no postular a la vacante**, orientando al usuario hacia oportunidades de mayor impacto, nivel o proyección salarial.
 
+
+
+![Captura - Evaluación de Trabajo No Recomendado por Sobrecalificación](imagenes_entrega/captura_trabajonorecomendado.png)
 ---
 
 ## 🏗️ Diagrama de Arquitectura de Software

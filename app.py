@@ -245,21 +245,27 @@ with cv_container:
             )
     
     user_cv_text = None
+    MAX_CV_SIZE_BYTES = 100 * 1024  # 100 KB en bytes
+
     if uploaded_cv is not None:
-        try:
-            from pypdf import PdfReader
-            pdf_reader = PdfReader(uploaded_cv)
-            extracted_pages = [page.extract_text() for page in pdf_reader.pages if page.extract_text()]
-            if extracted_pages:
-                user_cv_text = "\n".join(extracted_pages)
-                with col_status:
-                    st.success(f" CV listo: `{uploaded_cv.name}` ({len(pdf_reader.pages)} pág.)", icon="📑")
-            else:
-                with col_status:
-                    st.warning("⚠️ No se pudo extraer texto del PDF.")
-        except Exception as e:
+        if uploaded_cv.size > MAX_CV_SIZE_BYTES:
             with col_status:
-                st.error(f"Error al leer el PDF: {e}")
+                st.error(f"❌ El archivo `{uploaded_cv.name}` pesa {uploaded_cv.size / 1024:.1f} KB. El tamaño máximo permitido es de **100 KB**.", icon="⚠️")
+        else:
+            try:
+                from pypdf import PdfReader
+                pdf_reader = PdfReader(uploaded_cv)
+                extracted_pages = [page.extract_text() for page in pdf_reader.pages if page.extract_text()]
+                if extracted_pages:
+                    user_cv_text = "\n".join(extracted_pages)
+                    with col_status:
+                        st.success(f" CV listo: `{uploaded_cv.name}` ({uploaded_cv.size / 1024:.1f} KB - {len(pdf_reader.pages)} pág.)", icon="📑")
+                else:
+                    with col_status:
+                        st.warning("⚠️ No se pudo extraer texto del PDF.")
+            except Exception as e:
+                with col_status:
+                    st.error(f"Error al leer el PDF: {e}")
 
 st.divider()
 
