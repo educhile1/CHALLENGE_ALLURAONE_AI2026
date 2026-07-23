@@ -20,6 +20,54 @@ La aplicación se encuentra activa y desplegada en vivo en la infraestructura de
 
 ---
 
+## 🏗️ Diagrama de Arquitectura de Software
+
+```mermaid
+flowchart TD
+    subgraph Cliente["🖥️ Capa de Presentación (Streamlit UI)"]
+        UI["App Web Streamlit (Puerto 80)"]
+        AUTH["🔐 Módulo de Autenticación & Roles (Starter, Pro, Premium 360)"]
+        CV_UP["📄 Extractor de CV en PDF (pypdf)"]
+        MAIL["📧 Lector de Correos IMAP SSL"]
+    end
+
+    subgraph RAG_Engine["🧠 Motor RAG (LangChain + Python 3.10)"]
+        PROMPT["System Prompt EduBot Coach #MejoroTuFuturo"]
+        CHUNKING["RecursiveCharacterTextSplitter (chunk_size=1500)"]
+        RETRIEVER["Multi-Query Retriever"]
+    end
+
+    subgraph Storage["⚡ Base de Datos Vectorial (ChromaDB)"]
+        VECTORSTORE[("ChromaDB Persistent Store (chroma_db/)")]
+        DOCS_INTEL["Folder docs/ (PDFs e Inteligencia)"]
+        DOCS_HELP["Folder help/ (Base Conocimiento, FAQ, Precios)"]
+    end
+
+    subgraph CloudAI["☁️ Servicios de Google Gemini API"]
+        EMBED_API["models/gemini-embedding-001 (3072 dim)"]
+        LLM_API["gemini-2.5-flash (Generative Model)"]
+    end
+
+    UI --> AUTH
+    UI --> CV_UP
+    UI --> MAIL
+    CV_UP --> PROMPT
+    MAIL --> PROMPT
+    
+    DOCS_INTEL --> CHUNKING
+    DOCS_HELP --> CHUNKING
+    CHUNKING --> EMBED_API
+    EMBED_API --> VECTORSTORE
+
+    UI --> RETRIEVER
+    RETRIEVER --> VECTORSTORE
+    VECTORSTORE --> PROMPT
+    PROMPT --> LLM_API
+    LLM_API --> UI
+```
+
+---
+
 ## 🌟 Características Principales
 
 - **🤖 Motor Generativo con Google Gemini 2.5 Flash:** Orquestación mediante LangChain con el modelo `gemini-2.5-flash` para respuestas rápidas, precisas y fundamentadas en fuentes.
@@ -29,7 +77,29 @@ La aplicación se encuentra activa y desplegada en vivo en la infraestructura de
   - **`docs/` (Inteligencia e Informes):** PDFs y documentos técnicos sobre empleabilidad, salud, finanzas y dinámicas de trabajo.
   - **`help/` (Soporte y Producto):** Base de conocimiento oficial, preguntas frecuentes (FAQ), términos de uso, políticas y tabla de planes.
 - **📄 Adjunto Directo de CV en PDF desde el Chat:** El usuario puede adjuntar su Currículum Vitae en PDF desde el botón de la interfaz del chat; el sistema extrae el texto mediante `pypdf` e inyecta su perfil en el contexto para evaluación ATS y plan de carrera.
+- **📧 Conexión e Inspección de Correos Electrónicos (`email_engine.py`):** Módulo de conexión IMAP4 SSL para extraer notificaciones de ofertas laborales y correos de seguimiento.
 - **🔐 Autenticación de Usuario & Control de Roles por Plan:** Inicio de sesión seguro con control de acceso basado en roles (RBAC) y badges visuales según la suscripción del usuario.
+
+---
+
+## 🎯 Desglose de los 14 Módulos de Análisis
+
+| Módulo | Categoría | Descripción & Funcionalidad |
+| :---: | :--- | :--- |
+| **Módulo 1** | Empleabilidad | **Optimización CV & Match Score (ATS):** Cálculo del porcentaje de ajuste Candidato-Oferta y CV optimizado. |
+| **Módulo 2** | Carrera & Mercado | **Visión Estratégica & Salarial:** Proyección comparativa de remuneración e Índice de Futuro Laboral. |
+| **Módulo 3** | Bienestar | **Bienestar & Balance:** Prevención de agotamiento mental (burnout) y técnicas de manejo del estrés. |
+| **Módulo 4** | Finanzas | **Finanzas & Futuro:** Simulaciones de jubilación, planes de ahorro y optimización de gastos. |
+| **Módulo 5** | Empleabilidad | **Networking & Entrevistas:** Recomendaciones de comunidades y simulación interactiva de entrevistas. |
+| **Módulo 6** | Carrera | **Mapa de Carrera:** Análisis de personalidad deducido del CV y proyección visual de trayectorias. |
+| **Módulo 7** | Global | **Benchmark Internacional:** Comparativa de salarios y oportunidades de trabajo remoto global. |
+| **Módulo 8** | Empleabilidad | **Radar Laboral:** Detección de patrones en ofertas de mercado y alertas de capacitación. |
+| **Módulo 9** | Gamificación | **Sistema de Progreso:** Categorización de usuario (Junior → Pro → Experto) con retos semanales. |
+| **Módulo 10** | Salud | **Ruta Nutricional & Ejercicio:** Menú mensual costeado y rutinas de ejercicio adaptadas a turnos de trabajo. |
+| **Módulo 11** | Bienestar | **Cohesión Familiar:** Dinámicas y actividades de calidad familiar adaptadas a niveles de estrés. |
+| **Módulo 12** | Finanzas | **Inversión Avanzada (Saldo Positivo):** Estimación de riesgo y simulación para adquisición de bienes/inmuebles. |
+| **Módulo 13** | Finanzas | **Autoemprendimiento (Saldo Negativo):** Estrategias de trabajo remoto/freelance y reducción de gastos no esenciales. |
+| **Módulo 14** | Estrategia | **Simulador Emprendimiento vs Empleo Tradicional:** Análisis financiero comparativo a 6, 12 y 24 meses. |
 
 ---
 
